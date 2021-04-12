@@ -14,7 +14,7 @@ class Craft(models.Model):
     name = models.CharField(max_length=100)
     passengers = models.IntegerField()
     hyperdrive_rating = models.FloatField()
-    url = models.CharField(max_length=100)
+    url = models.CharField(max_length=100, default=None)
     # may or may not exist
     vehicle_class = models.CharField(max_length=100)
     starship_class = models.CharField(max_length=100)
@@ -36,6 +36,7 @@ class Craft(models.Model):
     condition = models.CharField(max_length=100, choices = CONDITION, default = GOOD)
     description = models.TextField(max_length=1000)
     mileage = models.IntegerField()
+    date_created = models.DateTimeField(auto_now=True)
 
     def __str__(self): 
         return self.name
