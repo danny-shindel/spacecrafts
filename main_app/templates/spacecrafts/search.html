@@ -4,7 +4,9 @@
 
 {% for starship in starships %}
     {{starship.url}}
-    <form method="GET" action="/form/" value='{{starship.url}}'>
+    <form method='POST' action="/form/" >
+        {% csrf_token %}
+        <input name='url' value="{{starship.url}}" type='hidden'>
         <button type="submit">THIS ONE</button>
     </form>
 {% endfor %}
