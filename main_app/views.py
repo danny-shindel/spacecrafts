@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Craft
 from .forms import CraftForm
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView, DeleteView
 import requests
 
 
@@ -19,7 +19,10 @@ def search(request):
     response = requests.get('https://swapi.dev/api/starships')
     results = response.json()
     starships = results['results']
-    return render(request, 'spacecrafts/search.html', { 'starships': starships })
+    response2 = requests.get('https://swapi.dev/api/vehicles')
+    results2 = response2.json()
+    vehicles = results2['results']
+    return render(request, 'spacecrafts/search.html', { 'starships': starships, 'vehicles' : vehicles })
 
 def form(request):
     response = requests.get(request.POST["url"])
@@ -35,3 +38,11 @@ def create(request):
         instance.save()
     return redirect('/')
 
+class CraftUpdate(UpdateView):
+    model = Craft
+    fields = '__all__'
+# get_absolute_url ?
+
+class CraftDelete(DeleteView):
+    model = Craft
+    success_url = '/crafts/'
