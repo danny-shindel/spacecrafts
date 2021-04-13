@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Craft
+from .forms import CraftForm
 from django.views.generic import ListView
 import requests
 
@@ -20,6 +21,9 @@ def search(request):
     return render(request, 'spacecrafts/search.html', { 'starships': starships })
 
 def form(request):
-    test = request.POST
-    return render(request, 'spacecrafts/form.html', { 'test': test })
+    response = requests.get(request.POST["url"])
+    results = response.json()
+    print(results)
+    craft_form = CraftForm(results)
+    return render(request, 'spacecrafts/form.html', { 'craft_form' : craft_form }) #end point at url in request.post
 
