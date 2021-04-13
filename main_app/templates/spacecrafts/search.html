@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% for starship in starships %}
+    {{starship.url}}
+    <form method="GET" action="/form/" value='{{starship.url}}'>
+        <button type="submit">THIS ONE</button>
+    </form>
+{% endfor %}
+
+{% endblock %}
