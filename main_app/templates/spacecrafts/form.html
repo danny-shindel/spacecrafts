@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{{test.url}}
+<div class="col s6">
+    <!-- new code below -->
+    <form method="post">
+      {% csrf_token %}
+      {{ craft_form.as_p }}
+      <input type="submit" class="btn" value="Add Craft">
+    </form>
+    <!-- new code above -->
+    </div>
 
 {% endblock %}
