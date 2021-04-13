@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<a href="/search/" >ADD A CRAFT</a>
+
+{% for craft in crafts %}
+    {{craft}}
+{% endfor %}
+
+{% endblock %}
