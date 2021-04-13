@@ -4,7 +4,12 @@
 <a href="/search/" >ADD A CRAFT</a>
 
 {% for craft in crafts %}
-    {{craft}}
+    <div>{{craft}}
+        <a href="{% url 'crafts_update' craft.id %}">Edit</a>
+        <a href="{% url 'crafts_delete' craft.id %}">Delete</a>
+    </div>
+
+    <!-- add edit & delete button -->
 {% endfor %}
 
 {% endblock %}

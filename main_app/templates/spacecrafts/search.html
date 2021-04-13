@@ -3,10 +3,19 @@
 
 
 {% for starship in starships %}
-    {{starship.url}}
+    {{starship.name}}
     <form method='POST' action="/form/" >
         {% csrf_token %}
         <input name='url' value="{{starship.url}}" type='hidden'>
+        <button type="submit">THIS ONE</button>
+    </form>
+{% endfor %}
+
+{% for vehicle in vehicles %}
+    {{vehicle.name}}
+    <form method='POST' action="/form/" >
+        {% csrf_token %}
+        <input name='url' value="{{vehicle.url}}" type='hidden'>
         <button type="submit">THIS ONE</button>
     </form>
 {% endfor %}
