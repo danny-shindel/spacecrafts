@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Craft
 from .forms import CraftForm
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import ListView, UpdateView, DeleteView, DetailView
 import requests
 
 
@@ -47,5 +47,7 @@ class CraftDelete(DeleteView):
     model = Craft
     success_url = '/crafts/'
 
-def detail(request, craft_id):
-    pass
+class CraftDetail(DetailView):
+    model = Craft
+    fields = '__all__'
+
