@@ -6,4 +6,7 @@ class CraftForm(ModelForm):
         model = Craft
         fields = "__all__" 
 
+
+
+
         
