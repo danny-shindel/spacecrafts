@@ -46,3 +46,6 @@ class CraftUpdate(UpdateView):
 class CraftDelete(DeleteView):
     model = Craft
     success_url = '/crafts/'
+
+def detail(request, craft_id):
+    pass

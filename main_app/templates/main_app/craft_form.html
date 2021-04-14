@@ -11,5 +11,6 @@
       {{ form.as_table }}
     </table>
     <input type="submit" value="Submit!" class="btn">
+    <a href="{% url 'crafts_delete' craft.id %}">Delete</a>
   </form>
 {% endblock %}
