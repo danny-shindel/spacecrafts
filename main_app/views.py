@@ -50,3 +50,4 @@ class CraftDelete(DeleteView):
 class CraftDetail(DetailView):
     model = Craft
     fields = '__all__'
+
