@@ -1,14 +1,14 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 class Craft(models.Model):
     # from API
-    cargo_capacity = models.IntegerField()
+    cargo_capacity = models.BigIntegerField()
     consumables = models.CharField(max_length=100)
-    cost_in_credits = models.IntegerField()
+    cost_in_credits = models.BigIntegerField()
     crew = models.IntegerField()
     length = models.IntegerField()
     manufacturer = models.CharField(max_length=500)
