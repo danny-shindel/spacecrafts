@@ -31,3 +31,7 @@ label{
   background-color: darkolivegreen;
 }
 
+ #id_url{
+  display: none;
+}
+
