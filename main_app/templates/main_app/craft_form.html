@@ -13,4 +13,14 @@
     <input type="submit" value="Submit!" class="btn">
     <a href="{% url 'crafts_delete' craft.id %}">Delete</a>
   </form>
+
+<script>
+
+
+const conditionEl = document.getElementById("id_condition");
+M.FormSelect.init(conditionEl);
+
+
+</script>
+
 {% endblock %}
