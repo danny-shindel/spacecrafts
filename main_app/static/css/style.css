@@ -31,7 +31,11 @@ label{
   background-color: darkolivegreen;
 }
 
- #id_url{
-  display: none;
+.col.s6 > form > p:nth-of-type(12) {
+  display:none;
+}
+
+.container > form > table > tbody > tr:nth-of-type(12) {
+  display:none;
 }
 
