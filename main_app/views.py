@@ -30,15 +30,16 @@ def form(request):
     results = response.json()
     print(results)
     craft_form = CraftForm(results)
-    return render(request, 'spacecrafts/form.html', { 'craft_form' : craft_form }) #end point at url in request.post
+    return render(request, 'spacecrafts/form.html', { 'craft_form' : craft_form , 'url' : results['url']}) #end point at url in request.post
 
 def create(request):
     form = CraftForm(request.POST)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.user = request.user
+        instance.url = request.POST['url']
         instance.save()
-    return redirect('/')
+    return redirect('crafts')
 
 def signup(request):
   error_message = ''
@@ -61,7 +62,10 @@ def signup(request):
 
 class CraftUpdate(UpdateView):
     model = Craft
-    fields = '__all__'
+    fields = ['cargo_capacity', 'consumables', 'cost_in_credits', 'crew', 'length', 
+    'manufacturer', 'max_atmosphering_speed', 'model', 'name', 'passengers', 
+    'hyperdrive_rating', 'vehicle_class', 'starship_class', 'MGLT', 'sell_price', 
+    'condition', 'description', 'mileage'] 
 # get_absolute_url ?
 
 class CraftDelete(DeleteView):

@@ -6,6 +6,7 @@
     <form action= "/create/"method="post">
       {% csrf_token %}
       {{ craft_form.as_p }}
+      <input name='url' value="{{url}}" type='hidden'>
       <input type="submit" class="btn" value="Add Craft">
     </form>
     <!-- new code above -->
