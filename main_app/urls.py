@@ -13,4 +13,5 @@ urlpatterns = [
   path('crafts/<int:pk>/detail', views.CraftDetail.as_view(), name='detail'),
   path('crafts/<int:pk>/update', views.CraftUpdate.as_view(), name='crafts_update'),
   path('crafts/<int:pk>/delete', views.CraftDelete.as_view(), name='crafts_delete'),
+  path('accounts/signup/', views.signup, name='signup'),
 ]

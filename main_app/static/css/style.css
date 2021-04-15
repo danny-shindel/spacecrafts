@@ -39,3 +39,6 @@ label{
   display:none;
 }
 
+.col.s6 > form > p:nth-of-type(20) {
+  display:none;
+}
