@@ -12,6 +12,7 @@ urlpatterns = [
   path('create/', views.create, name='create'),
   path('favorite/', views.favorite_index, name='favorite_index'),
   path('favorite/<int:craft_id>', views.favorite_create, name='favorite_create'),
+  path('crafts/<int:craft_id>/add_photo/', views.add_photo, name='add_photo'),
   path('crafts/<int:pk>/detail', views.CraftDetail.as_view(), name='detail'),
   path('crafts/<int:pk>/update', views.CraftUpdate.as_view(), name='crafts_update'),
   path('crafts/<int:pk>/delete', views.CraftDelete.as_view(), name='crafts_delete'),
