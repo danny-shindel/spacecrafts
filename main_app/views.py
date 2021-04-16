@@ -17,6 +17,7 @@ class Index(ListView):
 @login_required
 def user_index(request):
     crafts = Craft.objects.filter(user=request.user)
+    print(crafts)
     return render(request, 'spacecrafts/index.html', { 'crafts': crafts })
 
 @login_required
@@ -44,7 +45,6 @@ def create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.url = request.POST['url']
-        print(instance)
         instance.save()
     return redirect('crafts')
 
@@ -52,16 +52,10 @@ def favorite_index(request):
     favs = request.user.favorite_set.all()
     ids = []
     for fav in favs:
-        print(fav.__dict__)
-        num = fav.__dict__['craft_id']
-        ids.append(num)
-    print(ids)
+        ids.append(fav.__dict__['craft_id'])
     crafts = []
     for id in ids:
-        craft = Craft.objects.get(id=id)
-        print(craft)
-        crafts.append(craft)
-    print(crafts)
+        crafts.append(Craft.objects.get(id=id))
     return render(request, 'spacecrafts/favorite.html', { 'crafts' : crafts }) 
 
 
@@ -69,7 +63,6 @@ def favorite_create(request, craft_id):
     instance = Favorite()
     instance.craft_id = craft_id
     instance.user = request.user
-    print(instance)
     instance.save()
     return redirect('crafts')
 
