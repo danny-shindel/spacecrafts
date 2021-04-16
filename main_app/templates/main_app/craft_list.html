@@ -10,7 +10,9 @@
             <p>MODEL: {{ craft.model }}</p>
             <p>PRICE: {{ craft.sell_price }}</p>
             <p>MILEAGE: {{ craft.mileage }}</p>
-            <a href="{% url 'favorite_create' craft.id %}">Save Craft</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'favorite_create' craft.id %}">Save Craft</a>
+            {% endif %}
         </div>
     </div>
 </a>

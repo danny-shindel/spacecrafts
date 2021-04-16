@@ -48,11 +48,12 @@ def create(request):
         instance.save()
     return redirect('crafts')
 
+@login_required
 def favorite_index(request):
     favs = request.user.favorite_set.all()
     return render(request, 'spacecrafts/favorite.html', { 'favs' : favs }) 
 
-
+@login_required
 def favorite_create(request, craft_id):
     favs = request.user.favorite_set.all()
     for fav in favs:
@@ -65,7 +66,6 @@ def favorite_create(request, craft_id):
         instance.user = request.user
         instance.save()
         return redirect('crafts')
-
 
 def signup(request):
   error_message = ''
@@ -96,3 +96,4 @@ class CraftDelete(DeleteView, LoginRequiredMixin):
 class CraftDetail(DetailView, LoginRequiredMixin):
     model = Craft
     fields = '__all__'
+
