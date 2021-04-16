@@ -7,6 +7,11 @@
             <p>MODEL: {{ craft.model }}</p>
             <p>PRICE: {{ craft.sell_price }}</p>
             <p>MILEAGE: {{ craft.mileage }}</p>
+            {% for photo in craft.photo_set.all %}
+                <img class="responsive-img card-panel" src="{{photo.url}}">
+            {% empty %}
+                <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+            {% endfor %}
         </div>
     </div>
 <a href="">Back</a>

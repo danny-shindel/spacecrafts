@@ -57,3 +57,11 @@ class Favorite(models.Model):
     def __str__(self): 
         return f"{self.craft_id}"
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    craft = models.ForeignKey(Craft, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f"Photo for craft_id: {self.craft_id} @{self.url}"
+

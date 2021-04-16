@@ -10,8 +10,18 @@
       <!-- Render the inputs inside of <tr>s & <td>s -->
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit!" class="btn">
-    <a href="{% url 'crafts_delete' craft.id %}">Delete</a>
+    
+
+<!-- new code below -->
+    
+      <input type="submit" value="Submit!" class="btn">
+      <a href="{% url 'crafts_delete' craft.id %}">Delete</a>
+    </form>
+    <form action="{% url 'add_photo' craft.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+      {% csrf_token %}
+      <input type="file" name="photo-file">
+      <br><br>
+      <input type="submit" class="btn" value="Upload Photo">
   </form>
 
 <script>
