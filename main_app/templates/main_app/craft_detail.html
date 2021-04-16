@@ -12,6 +12,14 @@
             {% empty %}
                 <div class="card-panel teal-text center-align">No Photos Uploaded</div>
             {% endfor %}
+            {% if craft.badges.count %}
+                {% for badge in craft.badges.all %}
+                    <p>NAME: {{ badge.name }}</p>
+                    <p>description: {{ badge.description }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No Badges</p>
+            {% endif %}
         </div>
     </div>
 <a href="">Back</a>
