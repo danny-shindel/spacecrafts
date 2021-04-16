@@ -48,40 +48,35 @@ def create(request):
         instance.save()
     return redirect('crafts')
 
+@login_required
 def favorite_index(request):
     favs = request.user.favorite_set.all()
-    ids = []
-    for fav in favs:
-        ids.append(fav.__dict__['craft_id'])
-    crafts = []
-    for id in ids:
-        crafts.append(Craft.objects.get(id=id))
-    return render(request, 'spacecrafts/favorite.html', { 'crafts' : crafts }) 
+    return render(request, 'spacecrafts/favorite.html', { 'favs' : favs }) 
 
-
+@login_required
 def favorite_create(request, craft_id):
-    instance = Favorite()
-    instance.craft_id = craft_id
-    instance.user = request.user
-    instance.save()
-    return redirect('crafts')
-
+    favs = request.user.favorite_set.all()
+    for fav in favs:
+        if (craft_id == fav.__dict__['craft_id']):
+            print('same')
+            return redirect('index')
+    else:
+        instance = Favorite()
+        instance.craft_id = craft_id
+        instance.user = request.user
+        instance.save()
+        return redirect('crafts')
 
 def signup(request):
   error_message = ''
   if request.method == 'POST':
-    # This is how to create a 'user' form object
-    # that includes the data from the browser
     form = UserCreationForm(request.POST)
     if form.is_valid():
-      # This will add the user to the database
       user = form.save()
-      # This is how we log a user in via code
       login(request, user)
       return redirect('index')
     else:
       error_message = 'Invalid sign up - try again'
-  # A bad POST or a GET request, so render signup.html with an empty form
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
@@ -101,3 +96,4 @@ class CraftDelete(DeleteView, LoginRequiredMixin):
 class CraftDetail(DetailView, LoginRequiredMixin):
     model = Craft
     fields = '__all__'
+

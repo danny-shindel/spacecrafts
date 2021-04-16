@@ -11,7 +11,7 @@ class Craft(models.Model):
     consumables = models.CharField(max_length=100)
     cost_in_credits = models.BigIntegerField()
     crew = models.IntegerField()
-    length = models.IntegerField()
+    length = models.DecimalField(decimal_places=10, max_digits=10000)
     manufacturer = models.CharField(max_length=500)
     max_atmosphering_speed = models.IntegerField()
     model = models.CharField(max_length=100)

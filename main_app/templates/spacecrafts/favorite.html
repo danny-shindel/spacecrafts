@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for craft in crafts %}
-<a href="{% url 'crafts_update' craft.id %}">
+{% for fav in favs %}
+<a href="{% url 'crafts_update' fav.craft.id %}">
     <div class="card">
         <div class="card-content">
-            <span class="card-title">{{ craft.name }}</span>
-            <p>MANUFACTURER: {{ craft.manufacturer }}</p>
-            <p>MODEL: {{ craft.model }}</p>
-            <p>PRICE: {{ craft.sell_price }}</p>
-            <p>MILEAGE: {{ craft.mileage }}</p>
+            <span class="card-title">{{ fav.craft.name }}</span>
+            <p>MANUFACTURER: {{ fav.craft.manufacturer }}</p>
+            <p>MODEL: {{ fav.craft.model }}</p>
+            <p>PRICE: {{ fav.craft.sell_price }}</p>
+            <p>MILEAGE: {{ fav.craft.mileage }}</p>
         </div>
     </div>
 </a>
