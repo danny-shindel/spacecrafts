@@ -5,6 +5,14 @@ from django.core.validators import MaxValueValidator
 
 # Create your models here.
 
+
+class Badge(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(max_length=250)
+
+    def __str__(self):
+        return self.name
+
 class Craft(models.Model):
     # from API
     cargo_capacity = models.BigIntegerField()
@@ -42,6 +50,7 @@ class Craft(models.Model):
     mileage = models.IntegerField()
     date_created = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    badges = models.ManyToManyField(Badge)
 
     def __str__(self): 
         return self.name
