@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Craft, Saved
+from .models import Craft, Favorite
 from .forms import CraftForm
 from django.views.generic import ListView, UpdateView, DeleteView, DetailView
 import requests
@@ -44,31 +44,35 @@ def create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.url = request.POST['url']
+        print(instance)
         instance.save()
     return redirect('crafts')
 
-@login_required
-def saved(request):
-    posts = request.user.saved_set.all()
-    # iterate over all posts, for each post grab craft_id, do query for each craft & pass into view
+def favorite_index(request):
+    favs = request.user.favorite_set.all()
+    ids = []
+    for fav in favs:
+        print(fav.__dict__)
+        num = fav.__dict__['craft_id']
+        ids.append(num)
+    print(ids)
     crafts = []
-    print(posts)
-    for post in posts:
-        test = Craft.objects.get(id=post['craft_id'])
-        crafts.append(test)
+    for id in ids:
+        craft = Craft.objects.get(id=id)
+        print(craft)
+        crafts.append(craft)
     print(crafts)
-    return render(request, 'spacecrafts/saved.html', { 'crafts' : crafts})
+    return render(request, 'spacecrafts/favorite.html', { 'crafts' : crafts }) 
 
-@login_required
-def savedPost(request, craft_id):
-    instance = Saved()
-    instance.craft = Craft.objects.get(id=craft_id)
-    # instance.craft_id = craft_id
+
+def favorite_create(request, craft_id):
+    instance = Favorite()
+    instance.craft_id = craft_id
+    instance.user = request.user
+    print(instance)
     instance.save()
-    # instance.users.add(request.user)
-    request.user.saved_set.add(request.user)
-    instance.save()
-    return redirect('saved')
+    return redirect('crafts')
+
 
 def signup(request):
   error_message = ''

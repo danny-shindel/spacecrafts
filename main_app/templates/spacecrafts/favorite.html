@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% for craft in crafts %} -->
+<a href="{% url 'crafts_update' craft.craft_id %}"> 
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ craft.name}}</span>
+            <p>MANUFACTURER: {{ craft.name }}</p>
+            <p>MODEL: {{ craft.name }}</p>
+            <p>PRICE: {{ craft.sell_price }}</p>
+            <p>MILEAGE: {{ craft.mileage }}</p>
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+{% endblock %}

@@ -49,11 +49,11 @@ class Craft(models.Model):
     def get_absolute_url(self):
         return reverse('crafts')
 
-
-class Saved(models.Model):
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     craft = models.ForeignKey(Craft, on_delete=models.CASCADE)
-    users = models.ManyToManyField(User)
     date_created = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return 'saved posts'
+    def __str__(self): 
+        return f"{self.craft_id}"
+
