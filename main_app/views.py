@@ -50,13 +50,13 @@ def create(request):
 
 def favorite_index(request):
     favs = request.user.favorite_set.all()
-    ids = []
-    for fav in favs:
-        ids.append(fav.__dict__['craft_id'])
-    crafts = []
-    for id in ids:
-        crafts.append(Craft.objects.get(id=id))
-    return render(request, 'spacecrafts/favorite.html', { 'crafts' : crafts }) 
+    # ids = []
+    # for fav in favs:
+    #     ids.append(fav.__dict__['craft_id'])
+    # crafts = []
+    # for id in ids:
+    #     crafts.append(Craft.objects.get(id=id))
+    return render(request, 'spacecrafts/favorite.html', { 'favs' : favs }) 
 
 
 def favorite_create(request, craft_id):
