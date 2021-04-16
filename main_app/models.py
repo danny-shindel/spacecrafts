@@ -11,7 +11,7 @@ class Craft(models.Model):
     consumables = models.CharField(max_length=100)
     cost_in_credits = models.BigIntegerField()
     crew = models.IntegerField()
-    length = models.DecimalField(decimal_places=10, max_digits=10000)
+    length = models.DecimalField(decimal_places=10, max_digits=20)
     manufacturer = models.CharField(max_length=500)
     max_atmosphering_speed = models.IntegerField()
     model = models.CharField(max_length=100)
@@ -56,4 +56,12 @@ class Favorite(models.Model):
 
     def __str__(self): 
         return f"{self.craft_id}"
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    craft = models.ForeignKey(Craft, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f"Photo for craft_id: {self.craft_id} @{self.url}"
 
