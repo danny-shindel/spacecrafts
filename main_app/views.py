@@ -17,6 +17,17 @@ class Index(ListView):
     model = Craft
     fields = ['name']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        library = []
+        favs = Favorite.objects.filter(user = self.request.user)
+        for fav in favs:
+            library.append(fav.__dict__['craft_id'])
+        context['favs'] = library
+        return context
+    
+        
+
 @login_required
 def user_index(request):
     crafts = Craft.objects.filter(user=request.user)
@@ -73,7 +84,7 @@ def favorite_create(request, craft_id):
     favs = request.user.favorite_set.all()
     for fav in favs:
         if (craft_id == fav.__dict__['craft_id']):
-            print('same')
+            fav.delete()
             return redirect('index')
     else:
         instance = Favorite()
