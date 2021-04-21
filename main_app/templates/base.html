@@ -22,6 +22,7 @@
           {% if user.is_authenticated %}
             <li><a href="/crafts/" >&nbsp;&nbsp;My.Crafts</a></li>
             <li><a href="/favorite/" >&nbsp;&nbsp;My.Favs</a></li>
+            <li><a href="{% url 'logout' %}">&nbsp;&nbsp;Log Out</a></li>
           {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             <li><a href="{% url 'login' %}">Log In</a></li>
