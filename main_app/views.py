@@ -114,13 +114,20 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
-class CraftUpdate(UpdateView, LoginRequiredMixin):
-    model = Craft
-    fields = ['cargo_capacity', 'consumables', 'cost_in_credits', 'crew', 'length', 
-    'manufacturer', 'max_atmosphering_speed', 'model', 'name', 'passengers', 
-    'hyperdrive_rating', 'vehicle_class', 'starship_class', 'MGLT', 'sell_price', 
-    'condition', 'description', 'mileage'] 
-# get_absolute_url ?
+def craft_update(request, craft_id):
+    craft = Craft.objects.get(id=craft_id)
+    form = CraftForm(craft.__dict__)
+    return render(request, 'main_app/craft_form.html', {'form' : form, 'craft' : craft})
+
+
+def edit(request, craft_id):
+    print(craft_id)
+    form = CraftForm(request.POST)
+    print(form)
+    Craft.objects.get(id=craft_id).update(form.__dict__)
+    print(Craft.objects.get(id=craft_id))
+    # Craft.objects.get(id=craft_id).update(form)
+    return redirect('crafts')
 
 class CraftDelete(DeleteView, LoginRequiredMixin):
     model = Craft

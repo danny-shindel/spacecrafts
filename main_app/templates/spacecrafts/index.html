@@ -4,7 +4,7 @@
 <a href="/search/" >ADD A CRAFT</a>
 
 {% for craft in crafts %}
-<a href="{% url 'crafts_update' craft.id %}">
+<a href="{% url 'craft_update' craft.id %}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ craft.name }}</span>
