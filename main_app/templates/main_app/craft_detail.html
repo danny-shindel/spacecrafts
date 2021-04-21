@@ -21,7 +21,11 @@
                 <p>No Badges</p>
             {% endif %}
             {% if user.is_authenticated %}
-                <a href="{% url 'favorite_create' craft.id %}">Save Craft</a>
+                {% if craft.id in favs %}
+                    <a href="{% url 'favorite_create' craft.id %}">Unfavorite Craft</a>
+                {% else %}
+                    <a href="{% url 'favorite_create' craft.id %}"> Favorite Craft</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>

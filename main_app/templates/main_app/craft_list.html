@@ -11,18 +11,12 @@
             <p>PRICE: {{ craft.sell_price }}</p>
             <p>MILEAGE: {{ craft.mileage }}</p>
             {% if user.is_authenticated %}
-            
-                
                 {% if  craft.id in favs %}
                     <a href="{% url 'favorite_create' craft.id %}">Unfavorite Craft</a> 
                 {% else %}
                     <a href="{% url 'favorite_create' craft.id %}"> Favorite Craft</a> 
-
                 {% endif %}
-
-               
             {% endif %}
-            
         </div>
     </div>
 </a>
