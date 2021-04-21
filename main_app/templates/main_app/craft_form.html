@@ -35,6 +35,8 @@
     <input type="file" name="photo-file">
     <input type="submit" class="btn" value="Add Craft">
   </form>
+  <a href="{% url 'crafts_delete' craft.id %}">Delete</a>
+  <a href="javascript:history.back()">Go Back</a>
 </div>
 
 
