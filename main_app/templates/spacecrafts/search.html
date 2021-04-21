@@ -7,7 +7,7 @@
     <form method='POST' action="/form/" >
         {% csrf_token %}
         <input name='url' value="{{starship.url}}" type='hidden'>
-        <button type="submit">THIS ONE</button>
+        <button type="submit">Select</button>
     </form>
 {% endfor %}
 
@@ -16,8 +16,9 @@
     <form method='POST' action="/form/" >
         {% csrf_token %}
         <input name='url' value="{{vehicle.url}}" type='hidden'>
-        <button type="submit">THIS ONE</button>
+        <button type="submit">Select</button>
     </form>
 {% endfor %}
+<a href="javascript:history.back()">Go Back</a>
 
 {% endblock %}

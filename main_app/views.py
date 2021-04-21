@@ -97,7 +97,7 @@ def favorite_create(request, craft_id):
         instance.craft_id = craft_id
         instance.user = request.user
         instance.save()
-        return redirect('crafts')
+        return redirect('index')
 
 
 def signup(request):
