@@ -98,10 +98,12 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def craft_update(request, craft_id):
+    photos  = Photo.objects.filter(craft = craft_id)
+    print(photos)
     craft = Craft.objects.get(id=craft_id)
     badges_not = Badge.objects.exclude(id__in = craft.badges.all().values_list('id'))
     form = CraftForm(craft.__dict__)
-    return render(request, 'main_app/craft_form.html', {'form' : form, 'craft' : craft, 'badges' : badges_not })
+    return render(request, 'main_app/craft_form.html', {'form' : form, 'craft' : craft, 'badges' : badges_not, 'photos': photos})
 
 
 def edit(request, craft_id):
@@ -113,6 +115,8 @@ def edit(request, craft_id):
             instance.badges.add(int(badge))
         for badge in request.POST.getlist('badges_has'):
             instance.badges.remove(int(badge))
+        for photo in request.POST.getlist('photos'):
+            Photo.objects.get(id = photo).delete()
         photo_file = request.FILES.get('photo-file', None)
         if photo_file:
             s3 = boto3.client('s3')

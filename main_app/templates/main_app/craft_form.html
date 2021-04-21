@@ -24,6 +24,14 @@
         {% endfor %}
       </select>
     </div>
+    <div>HAS THESE PHOTOS</div>
+    <div class="select-wrapper">
+      <select name="photos" multiple size="5" id="photos">
+        {% for photo in photos.all %}
+        <option value="{{photo.id}}">{{photo.url}}</option>
+        {% endfor %}
+      </select>
+    </div>
     <input type="file" name="photo-file">
     <input type="submit" class="btn" value="Add Craft">
   </form>
@@ -40,6 +48,9 @@
 
   const badgesEl2 = document.getElementById("id_badges2");
     M.FormSelect.init(badgesEl2);
+
+  const photoEl = document.getElementById("photos");
+  M.FormSelect.init(photoEl);
     
 </script>
 
