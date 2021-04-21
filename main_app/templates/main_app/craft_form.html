@@ -8,23 +8,39 @@
     {% csrf_token %}
     {{ form.as_p }}
     <input name='url' value="{{url}}" type='hidden'>
-    <!-- <label for="id_badges">Badges</label> -->
-    <!-- <div class="select-wrapper">
+    <label for="id_badges">Badges</label>
+    <div class="select-wrapper">
       <select name="badges" multiple size="5" id="id_badges">
-        {% for badge in badges %}
+        {% for badge in badges.all %}
         <option value="{{badge.id}}">{{badge.name}}</option>
         {% endfor %}
       </select>
     </div>
-    <input type="file" name="photo-file"> -->
+    <div>HAS THESE BADGES</div>
+    <div class="select-wrapper">
+      <select name="badges_has" multiple size="5" id="id_badges2">
+        {% for badge in craft.badges.all %}
+        <option value="{{badge.id}}">{{badge.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <input type="file" name="photo-file">
     <input type="submit" class="btn" value="Add Craft">
   </form>
 </div>
 
 
 <script>
+
   const conditionEl = document.getElementById("id_condition");
   M.FormSelect.init(conditionEl);
+
+  const badgesEl = document.getElementById("id_badges");
+    M.FormSelect.init(badgesEl);
+
+  const badgesEl2 = document.getElementById("id_badges2");
+    M.FormSelect.init(badgesEl2);
+    
 </script>
 
 {% endblock %}

@@ -82,23 +82,6 @@ def favorite_create(request, craft_id):
         instance.save()
         return redirect('crafts')
 
-def add_photo(request, craft_id):
-    
-    photo_file = request.FILES.get('photo-file', None)
-    print(photo_file)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(photo_file, bucket, key)
-
-            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            print('here')
-            Photo.objects.create(url=url, craft_id=craft_id)
-        except:
-            print('An error occurred uploading file to S3')
-    return redirect('index')
 
 def signup(request):
   error_message = ''
@@ -116,17 +99,32 @@ def signup(request):
 
 def craft_update(request, craft_id):
     craft = Craft.objects.get(id=craft_id)
+    badges_not = Badge.objects.exclude(id__in = craft.badges.all().values_list('id'))
     form = CraftForm(craft.__dict__)
-    return render(request, 'main_app/craft_form.html', {'form' : form, 'craft' : craft})
+    return render(request, 'main_app/craft_form.html', {'form' : form, 'craft' : craft, 'badges' : badges_not })
 
 
 def edit(request, craft_id):
-    print(craft_id)
-    form = CraftForm(request.POST)
-    print(form)
-    Craft.objects.get(id=craft_id).update(form.__dict__)
-    print(Craft.objects.get(id=craft_id))
-    # Craft.objects.get(id=craft_id).update(form)
+    instance = Craft.objects.get(id=craft_id)
+    form = CraftForm(request.POST, instance=instance)
+    if form.is_valid():
+        form.save()
+        for badge in request.POST.getlist('badges'):
+            instance.badges.add(int(badge))
+        for badge in request.POST.getlist('badges_has'):
+            instance.badges.remove(int(badge))
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            try:
+                bucket = os.environ['S3_BUCKET']
+                s3.upload_fileobj(photo_file, bucket, key)
+                url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+                Photo.objects.create(url=url, craft_id=instance.__dict__['id'])
+            except:
+                print('An error occurred uploading file to S3')
+        return redirect('crafts')
     return redirect('crafts')
 
 class CraftDelete(DeleteView, LoginRequiredMixin):
