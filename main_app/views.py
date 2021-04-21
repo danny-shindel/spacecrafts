@@ -115,12 +115,15 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def craft_update(request, craft_id):
-    photos  = Photo.objects.filter(craft = craft_id)
-    print(photos)
     craft = Craft.objects.get(id=craft_id)
-    badges_not = Badge.objects.exclude(id__in = craft.badges.all().values_list('id'))
-    form = CraftForm(craft.__dict__)
-    return render(request, 'main_app/craft_form.html', {'form' : form, 'craft' : craft, 'badges' : badges_not, 'photos': photos})
+    if craft.__dict__['user_id'] == request.user.id:
+        photos  = Photo.objects.filter(craft = craft_id)
+        print(photos)
+        badges_not = Badge.objects.exclude(id__in = craft.badges.all().values_list('id'))
+        form = CraftForm(craft.__dict__)
+        return render(request, 'main_app/craft_form.html', {'form' : form, 'craft' : craft, 'badges' : badges_not, 'photos': photos})
+    else:
+        return redirect('index')
 
 
 def edit(request, craft_id):
