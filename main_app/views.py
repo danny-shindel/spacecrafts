@@ -18,13 +18,19 @@ class Index(ListView):
     fields = ['name']
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        library = []
-        favs = Favorite.objects.filter(user = self.request.user)
-        for fav in favs:
-            library.append(fav.__dict__['craft_id'])
-        context['favs'] = library
-        return context
+        if (not self.request.user.is_anonymous):
+            context = super().get_context_data(**kwargs)
+            library = []
+            favs = Favorite.objects.filter(user = self.request.user)
+            for fav in favs:
+                library.append(fav.__dict__['craft_id'])
+            context['favs'] = library
+            return context
+        else:
+            context = super().get_context_data(**kwargs)
+            context['object_list'] = Craft.objects.all()
+            return context
+            
     
         
 
@@ -150,3 +156,16 @@ class CraftDetail(DetailView, LoginRequiredMixin):
     model = Craft
     fields = '__all__'
 
+    def get_context_data(self, **kwargs):
+        if (not self.request.user.is_anonymous):
+            context = super().get_context_data(**kwargs)
+            library = []
+            favs = Favorite.objects.filter(user = self.request.user)
+            for fav in favs:
+                library.append(fav.__dict__['craft_id'])
+            context['favs'] = library
+            return context
+        else:
+            context = super().get_context_data(**kwargs)
+            context['object_list'] = Craft.objects.all()
+            return context
