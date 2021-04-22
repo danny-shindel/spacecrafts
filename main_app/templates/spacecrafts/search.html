@@ -2,17 +2,17 @@
 {% block content %}
 
 
-<div class="carousel" id="search_carousel">
+<div tabindex="-1" class="carousel" id="search_carousel">
     {% for starship in starships %}
-    <a class="carousel-item">
-        <div id='search_img'><img id="search_image" src={{starship.color}}></div>
-        <div>{{starship.name}}</div>&nbsp;
-        <form method='POST' action="/form/">
+    <a tabindex="-1" class="carousel-item">
+        <div tabindex="-1" id='search_img'><img tabindex="-1" alt="Craft image." id="search_image" src={{starship.color}}></div>
+        <div tabindex="-1">{{starship.name}}</div>&nbsp;
+        <form tabindex="-1" method='POST' action="/form/">
             {% csrf_token %}
-            <input name='url' value="{{starship.url}}" type='hidden'>
-            <input name='color' value="{{starship.color}}" type='hidden'>
-            <input name='black' value="{{starship.black}}" type='hidden'>
-            <button type="submit">Select</button>
+            <input tabindex="-1" name='url' value="{{starship.url}}" type='hidden'>
+            <input tabindex="-1" name='color' value="{{starship.color}}" type='hidden'>
+            <input tabindex="-1" name='black' value="{{starship.black}}" type='hidden'>
+            <button tabindex="1" type="submit">Select</button>
         </form>
     {% endfor %}
     </a>
