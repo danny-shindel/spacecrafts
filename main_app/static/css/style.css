@@ -130,6 +130,10 @@ a {
   color: black;
 }
 
+#detail_badge{
+  display: flex;
+}
+
 
 
 
