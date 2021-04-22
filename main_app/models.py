@@ -52,7 +52,8 @@ class Craft(models.Model):
     date_created = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     badges = models.ManyToManyField(Badge)
-    image = models.CharField(max_length=100, blank=True)
+    color = models.CharField(max_length=100, blank=True)
+    black = models.CharField(max_length=100, blank=True)
 
     def __str__(self): 
         return self.name
@@ -77,4 +78,5 @@ class Photo(models.Model):
         return f"Photo for craft_id: {self.craft_id} @{self.url}"
 
 class Image(models.Model):
-    url = models.CharField(max_length=200)
+    color = models.CharField(max_length=200)
+    black = models.CharField(max_length=200)
