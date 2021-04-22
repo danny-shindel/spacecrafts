@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Craft, Favorite, Photo, Badge
+from .models import Craft, Favorite, Photo, Badge, Image
 from .forms import CraftForm
 from django.views.generic import ListView, UpdateView, DeleteView, DetailView
 import requests
@@ -41,21 +41,30 @@ def user_index(request):
 
 @login_required
 def search(request):
+    images = Image.objects.all()
     response = requests.get('https://swapi.dev/api/starships')
     results = response.json()
     starships = results['results']
+    for idx,val in enumerate(starships):
+        val['color'] = images[idx].color
+        val['black'] = images[idx].black
     response2 = requests.get('https://swapi.dev/api/vehicles')
     results2 = response2.json()
     vehicles = results2['results']
-    return render(request, 'spacecrafts/search.html', { 'starships': starships, 'vehicles' : vehicles })
+    for idx,val in enumerate(vehicles):
+        val['color'] = images[idx+10].color
+        val['black'] = images[idx+10].black
+    return render(request, 'spacecrafts/search.html', { 'starships': starships, 'vehicles' : vehicles, })
 
 @login_required
 def form(request):
+    color = request.POST["color"]
+    black = request.POST["black"]
     response = requests.get(request.POST["url"])
     results = response.json()
     craft_form = CraftForm(results)
     badges = Badge.objects.all()
-    return render(request, 'spacecrafts/form.html', { 'craft_form' : craft_form , 'url' : results['url'], 'badges' : badges}) #end point at url in request.post
+    return render(request, 'spacecrafts/form.html', { 'craft_form' : craft_form , 'url' : results['url'], 'badges' : badges, 'color' : color, 'black' : black}) #end point at url in request.post
 
 @login_required
 def create(request):
@@ -64,6 +73,8 @@ def create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.url = request.POST['url']
+        instance.black = request.POST['black']
+        instance.color = request.POST['color']
         instance.save()
         for badge in request.POST.getlist('badges'):
             instance.badges.add(int(badge))

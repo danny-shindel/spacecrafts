@@ -6,6 +6,8 @@
     {% csrf_token %}
     {{ craft_form.as_p }}
     <input name='url' value="{{url}}" type='hidden'>
+    <input name='color' value="{{color}}" type='hidden'>
+    <input name='black' value="{{black}}" type='hidden'>
     <label for="id_badges">Badges</label>
     <div class="select-wrapper">
       <select name="badges" multiple size="5" id="id_badges">

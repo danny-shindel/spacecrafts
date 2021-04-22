@@ -3,19 +3,27 @@
 
 
 {% for starship in starships %}
+    <div id='img'><img src={{starship.color}}></div>  
+    <div id='img'><img src={{starship.black}}></div>  
     {{starship.name}}
     <form method='POST' action="/form/" >
         {% csrf_token %}
         <input name='url' value="{{starship.url}}" type='hidden'>
+        <input name='color' value="{{starship.color}}" type='hidden'>
+        <input name='black' value="{{starship.black}}" type='hidden'>
         <button type="submit">Select</button>
     </form>
 {% endfor %}
 
 {% for vehicle in vehicles %}
+    <div id='img'><img src={{vehicle.color}}></div>
+    <div id='img'><img src={{vehicle.black}}></div>
     {{vehicle.name}}
     <form method='POST' action="/form/" >
         {% csrf_token %}
         <input name='url' value="{{vehicle.url}}" type='hidden'>
+        <input name='color' value="{{vehicle.color}}" type='hidden'>
+        <input name='black' value="{{vehicle.black}}" type='hidden'>
         <button type="submit">Select</button>
     </form>
 {% endfor %}

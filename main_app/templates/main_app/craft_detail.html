@@ -3,6 +3,7 @@
 <h1>DETAIL <span class="teal-text">{{object.name}}</span></h1>
     <div class="card">
         <div class="card-content">
+            <img src={{craft.color}}>
             <p>MANUFACTURER: {{ craft.manufacturer }}</p>
             <p>MODEL: {{ craft.model }}</p>
             <p>PRICE: {{ craft.sell_price }}</p>
@@ -14,6 +15,7 @@
             {% endfor %}
             {% if craft.badges.count %}
                 {% for badge in craft.badges.all %}
+                    <img src="{{badge.image}}">
                     <p>NAME: {{ badge.name }}</p>
                     <p>description: {{ badge.description }}</p>
                 {% endfor %}
