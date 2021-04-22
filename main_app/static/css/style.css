@@ -8,6 +8,7 @@ body {
 
 main {
   flex: 1 0 auto;
+  margin: 0vmin 20vmin 0vmin 20vmin;
 }
 
 footer.page-footer {
@@ -133,6 +134,36 @@ a {
 #detail_badge{
   display: flex;
 }
+
+#search_carousel{
+  margin: -20vmin 0 5vmin 20vmin;
+  height: 100vmin;
+  width: 140vmin;
+}
+
+#search_carousel > a {
+  margin-top: -10vmin;
+  width: 120vmin;
+}
+
+#search_img{
+  height:60vmin;
+  width:100vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+#search_image{
+  max-width:100%;
+  max-height:100%;
+}
+
+
+
+
 
 
 
