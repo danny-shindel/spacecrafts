@@ -14,20 +14,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;SpaceCrafts</a></li>
+  <header tabindex="-1" class="navbar-fixed">
+    <nav tabindex="-1">
+      <div tabindex="-1" class="nav-wrapper">
+        <ul tabindex="-1">
+          <li tabindex="-1"><a href="/" class="left brand-logo">&nbsp;&nbsp;SpaceCrafts</a></li>
         </ul>
-        <ul class="right">
+        <ul tabindex="-1" class="right">
           {% if user.is_authenticated %}
-            <li><a href="/crafts/" >&nbsp;&nbsp;My.Crafts</a></li>
-            <li><a href="/favorite/" >&nbsp;&nbsp;My.Favs</a></li>
-            <li><a href="{% url 'logout' %}">&nbsp;&nbsp;Log Out</a></li>
+            <li tabindex="-1"><a href="/crafts/" >&nbsp;&nbsp;My.Crafts</a></li>
+            <li tabindex="-1"><a href="/favorite/" >&nbsp;&nbsp;My.Favs</a></li>
+            <li tabindex="-1"><a href="{% url 'logout' %}">&nbsp;&nbsp;Log Out</a></li>
           {% else %}
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li tabindex="-1"><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li tabindex="-1"><a href="{% url 'login' %}">Log In</a></li>
           {% endif %}
         </ul>
       </div>
@@ -37,8 +37,8 @@
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2021 SpaceCrafts &nbsp;</div>
+  <footer tabindex="-1" class="page-footer">
+    <div tabindex="-1" class="right">All Rights Reserved, &copy; 2021 SpaceCrafts &nbsp;</div>
   </footer>
 </body>
 </html>

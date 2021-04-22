@@ -1,52 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>DETAIL <span class="teal-text">{{object.name}}</span></h1>
-<div id="detail_container">
-    <div class="carousel">
+<h1 tabindex="-1">DETAIL <span class="teal-text">{{object.name}}</span></h1>
+<div tabindex="-1" id="detail_container">
+    <div tabindex="-1" class="carousel">
         {% for photo in craft.photo_set.all %}
-                <a  class="carousel-item">
-                    <img  src="{{photo.url}}">
+                <a tabindex="-1" class="carousel-item">
+                    <img tabindex="-1" alt="User uploaded photo."  src="{{photo.url}}">
                 </a>
         {% empty %}
-                <div>No Photos Uploaded</div>
+                <div tabindex="-1">No Photos Uploaded</div>
         {% endfor %}
     </div>
     <div>
-        <div>Model: {{ craft.model}}</div>
-        <div> Manufacturer: {{ craft.manufacturer}}</div>
-        <div> Price: {{ craft.price}}</div>
-        <div> Mileage: {{ craft.mileage}}</div>
-        <div>  Consumables: {{ craft.consumables }}</div>
-        <div> Cost in Credits: {{ craft.cost_in_credits}}</div>
-        <div> Crew: {{ craft.crew}}</div>
-        <div> Length: {{craft.length}}</div>
-        <div> Max atmosphering speed: {{ craft.max_atmosphering_speed}}</div>
-        <div> Name: {{craft.name}}</div>
-        <div> Passengers: {{ craft.passengers}}</div>
-        <div> Hyperdrive Rating: {{craft.hyperdrive_rating}}</div>
-        <div> url: {{craft.url }}</div>
-        <div> Vehicle class: {{ craft.vehicle_class}}</div>
-        <div> Starship Class: {{craft.starship_class}}</div>
-        <div> MGLT: {{ craft.mglt}}</div>
-        <div> Sell Price: {{ craft.sell_price}}</div>
-        <div> Condition: {{ craft.condtion}}</div>
-        <div> Description: {{ craft.description}}</div>
-        <div> Date Created: {{ craft.date_created}}</div>
-        <div id="detail_badge">
+        <div tabindex="-1">Model: {{ craft.model}}</div>
+        <div tabindex="-1"> Manufacturer: {{ craft.manufacturer}}</div>
+        <div tabindex="-1"> Price: {{ craft.price}}</div>
+        <div tabindex="-1"> Mileage: {{ craft.mileage}}</div>
+        <div tabindex="-1">  Consumables: {{ craft.consumables }}</div>
+        <div tabindex="-1"> Cost in Credits: {{ craft.cost_in_credits}}</div>
+        <div tabindex="-1"> Crew: {{ craft.crew}}</div>
+        <div tabindex="-1"> Length: {{craft.length}}</div>
+        <div tabindex="-1"> Max atmosphering speed: {{ craft.max_atmosphering_speed}}</div>
+        <div tabindex="-1"> Name: {{craft.name}}</div>
+        <div tabindex="-1"> Passengers: {{ craft.passengers}}</div>
+        <div tabindex="-1"> Hyperdrive Rating: {{craft.hyperdrive_rating}}</div>
+        <div tabindex="-1"> url: {{craft.url }}</div>
+        <div tabindex="-1"> Vehicle class: {{ craft.vehicle_class}}</div>
+        <div tabindex="-1"> Starship Class: {{craft.starship_class}}</div>
+        <div tabindex="-1"> MGLT: {{ craft.mglt}}</div>
+        <div tabindex="-1"> Sell Price: {{ craft.sell_price}}</div>
+        <div tabindex="-1"> Condition: {{ craft.condtion}}</div>
+        <div tabindex="-1"> Description: {{ craft.description}}</div>
+        <div tabindex="-1"> Date Created: {{ craft.date_created}}</div>
+        <div tabindex="-1" id="detail_badge">
             {% if craft.badges.count %}
                 {% for badge in craft.badges.all %}
-                <div>
-                    <img src="{{badge.image}}">
-                    <p>NAME: {{ badge.name }}</p>
-                    <p>description: {{ badge.description }}</p>
+                <div tabindex="-1">
+                    <img tabindex="-1" alt="Badge emblum." src="{{badge.image}}">
+                    <p tabindex="-1">NAME: {{ badge.name }}</p>
+                    <p tabindex="-1">description: {{ badge.description }}</p>
                 </div>
                 {% endfor %}
             {% else %}
-                <p>No Badges</p>
+                <p tabindex="-1">No Badges</p>
             {% endif %}
         </div>
         
-        <div id="list_fav">
+        <div tabindex="-1" id="list_fav">
             {% if user.is_authenticated %}
                 {% if craft.user.id != user.id %}
                     {% if craft.id in favs %}

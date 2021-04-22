@@ -3,22 +3,22 @@
 
 {% for craft in object_list %}
 
-<div id="list_container">
-            <div id="list_flex">
-                <div id="list_image_holder">
-                    <a href="{% url 'detail' craft.id %}"><img id=list_image src={{craft.black}}></a>
+<div tabindex="-1" id="list_container">
+            <div tabindex="-1" id="list_flex">
+                <div tabindex="-1" id="list_image_holder">
+                    <a href="{% url 'detail' craft.id %}"><img tabindex="-1" alt="Solid color image of craft." id=list_image src={{craft.black}}></a>
                 </div>
-                <div id="list_text">
-                    <div id="list_model">{{craft.model}}</div>
-                    <div id="list_manufacturer">{{craft.manufacturer}}</div>
-                    <div id="list_sell_price">{{craft.sell_price}}</div>
-                    <div id="list_mileage">Mileage: {{ craft.mileage}}</div>
-                    <div id="list_data">
-                        <div>{{ craft.condition}}</div>&nbsp;&nbsp;-&nbsp;&nbsp;
-                        <div>{{ craft.hyperdrive_rating}}</div>&nbsp;&nbsp;-&nbsp;&nbsp;
-                        <div>{{ craft.consumables}}</div>
+                <div tabindex="-1" id="list_text">
+                    <div tabindex="-1" id="list_model">{{craft.model}}</div>
+                    <div tabindex="-1" id="list_manufacturer">{{craft.manufacturer}}</div>
+                    <div tabindex="-1" id="list_sell_price">{{craft.sell_price}}</div>
+                    <div tabindex="-1" id="list_mileage">Mileage: {{ craft.mileage}}</div>
+                    <div tabindex="-1" id="list_data">
+                        <div tabindex="-1">{{ craft.condition}}</div>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <div tabindex="-1">{{ craft.hyperdrive_rating}}</div>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <div tabindex="-1">{{ craft.consumables}}</div>
                     </div>
-                    <div id="list_fav">
+                    <div tabindex="-1" id="list_fav">
                         {% if user.is_authenticated %}
                             {% if craft.user.id != user.id %}
                                 {% if craft.id in favs %}
@@ -29,13 +29,13 @@
                             {% endif %}
                         {% endif %}
                     </div>
-                    <div id="list_badge">
+                    <div tabindex="-1" id="list_badge">
                         {% if craft.badges.count %}
                             {% for badge in craft.badges.all%}
-                                <img src={{badge.image}}>
+                                <img tabindex="-1" alt="Badge emblum." src={{badge.image}}>
                             {% endfor %}
                         {% else %}
-                            <div>No Badges</div>
+                            <div tabindex="-1">No Badges</div>
                         {% endif %}
                     </div>
                 </div>

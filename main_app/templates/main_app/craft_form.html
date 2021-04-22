@@ -1,39 +1,39 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Edit</h1>
+<h1 tabindex="-1">Edit</h1>
 
 
 
-<div class="col s6">
-  <form action="{% url 'edit' craft.id %}" enctype="multipart/form-data" method="post">
+<div tabindex="-1" class="col s6">
+  <form tabindex="-1" action="{% url 'edit' craft.id %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input name='url' value="{{url}}" type='hidden'>
-    <label for="id_badges">Badges</label>
-    <div class="select-wrapper">
-      <select name="badges" multiple size="5" id="id_badges">
+    <input tabindex="-1" name='url' value="{{url}}" type='hidden'>
+    <label tabindex="-1" for="id_badges">Badges</label>
+    <div tabindex="-1" class="select-wrapper">
+      <select tabindex="1" name="badges" multiple size="5" id="id_badges">
         {% for badge in badges.all %}
-        <option value="{{badge.id}}">{{badge.name}}</option>
+        <option tabindex="1" value="{{badge.id}}">{{badge.name}}</option>
         {% endfor %}
       </select>
     </div>
-    <div>HAS THESE BADGES</div>
-    <div class="select-wrapper">
-      <select name="badges_has" multiple size="5" id="id_badges2">
+    <div tabindex="-1">HAS THESE BADGES</div>
+    <div tabindex="-1" class="select-wrapper">
+      <select tabindex="1" name="badges_has" multiple size="5" id="id_badges2">
         {% for badge in craft.badges.all %}
-        <option value="{{badge.id}}">{{badge.name}}</option>
+        <option tabindex="1" value="{{badge.id}}">{{badge.name}}</option>
         {% endfor %}
       </select>
     </div>
-    <div>HAS THESE PHOTOS</div>
-    <div class="select-wrapper">
-      <select name="photos" multiple size="5" id="photos">
+    <div tabindex="-1">HAS THESE PHOTOS</div>
+    <div tabindex="-1" class="select-wrapper">
+      <select tabindex="1" name="photos" multiple size="5" id="photos">
         {% for photo in photos.all %}
-        <option value="{{photo.id}}">{{photo.url}}</option>
+        <option tabindex="1" value="{{photo.id}}">{{photo.url}}</option>
         {% endfor %}
       </select>
     </div>
-    <input type="file" name="photo-file">
-    <input type="submit" class="btn" value="Add Craft">
+    <input tabindex="1" type="file" name="photo-file">
+    <input tabindex="1" type="submit" class="btn" value="Add Craft">
   </form>
   <a href="{% url 'crafts_delete' craft.id %}">Delete</a>
   <a href="javascript:history.back()">Go Back</a>
