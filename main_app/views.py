@@ -54,7 +54,8 @@ def search(request):
     for idx,val in enumerate(vehicles):
         val['color'] = images[idx+10].color
         val['black'] = images[idx+10].black
-    return render(request, 'spacecrafts/search.html', { 'starships': starships, 'vehicles' : vehicles, })
+    starships = starships + vehicles
+    return render(request, 'spacecrafts/search.html', { 'starships': starships })
 
 @login_required
 def form(request):

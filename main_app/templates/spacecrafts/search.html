@@ -2,31 +2,32 @@
 {% block content %}
 
 
-{% for starship in starships %}
-    <div id='img'><img src={{starship.color}}></div>  
-    <div id='img'><img src={{starship.black}}></div>  
-    {{starship.name}}
-    <form method='POST' action="/form/" >
-        {% csrf_token %}
-        <input name='url' value="{{starship.url}}" type='hidden'>
-        <input name='color' value="{{starship.color}}" type='hidden'>
-        <input name='black' value="{{starship.black}}" type='hidden'>
-        <button type="submit">Select</button>
-    </form>
-{% endfor %}
+<div class="carousel" id="search_carousel">
+    {% for starship in starships %}
+    <a class="carousel-item">
+        <div id='search_img'><img id="search_image" src={{starship.color}}></div>
+        <div>{{starship.name}}</div>&nbsp;
+        <form method='POST' action="/form/">
+            {% csrf_token %}
+            <input name='url' value="{{starship.url}}" type='hidden'>
+            <input name='color' value="{{starship.color}}" type='hidden'>
+            <input name='black' value="{{starship.black}}" type='hidden'>
+            <button type="submit">Select</button>
+        </form>
+    {% endfor %}
+    </a>
+</div>
 
-{% for vehicle in vehicles %}
-    <div id='img'><img src={{vehicle.color}}></div>
-    <div id='img'><img src={{vehicle.black}}></div>
-    {{vehicle.name}}
-    <form method='POST' action="/form/" >
-        {% csrf_token %}
-        <input name='url' value="{{vehicle.url}}" type='hidden'>
-        <input name='color' value="{{vehicle.color}}" type='hidden'>
-        <input name='black' value="{{vehicle.black}}" type='hidden'>
-        <button type="submit">Select</button>
-    </form>
-{% endfor %}
+
 <a href="javascript:history.back()">Go Back</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.carousel');
+        var instances = M.Carousel.init(elems, {
+            numVisible: 2,
+        });
+    });
+</script>
 
 {% endblock %}
