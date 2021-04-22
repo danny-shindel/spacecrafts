@@ -2,20 +2,40 @@
 {% block content %}
 
 {% for fav in favs %}
-<a href="{% url 'detail' fav.craft.id %}">
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ fav.craft.name }}</span>
-            <p>MANUFACTURER: {{ fav.craft.manufacturer }}</p>
-            <p>MODEL: {{ fav.craft.model }}</p>
-            <p>PRICE: {{ fav.craft.sell_price }}</p>
-            <p>MILEAGE: {{ fav.craft.mileage }}</p>
+
+<div id="list_container">
+    <div id="list_flex">
+        <div id="list_image_holder">
+            <a href="{% url 'detail' fav.craft.id %}"><img id=list_image src={{fav.craft.black}}></a>
         </div>
-        {% if user.is_authenticated %}
-                <a href="{% url 'favorite_create' fav.craft.id %}">Unfavorite</a>
-        {% endif %}
+        <div id="list_text">
+            <div id="list_model">{{fav.craft.model}}</div>
+            <div id="list_manufacturer">{{fav.craft.manufacturer}}</div>
+            <div id="list_sell_price">{{fav.craft.sell_price}}</div>
+            <div id="list_mileage">Mileage: {{ fav.craft.mileage}}</div>
+            <div id="list_data">
+                <div>{{ fav.craft.condition}}</div>&nbsp;&nbsp;-&nbsp;&nbsp;
+                <div>{{ fav.craft.hyperdrive_rating}}</div>&nbsp;&nbsp;-&nbsp;&nbsp;
+                <div>{{ fav.craft.consumables}}</div>
+            </div>
+            <div id="list_fav">
+                {% if user.is_authenticated %}
+                    <a class="fav_button" style="background-color: green" href="{% url 'favorite_create' fav.craft.id %}"></a>
+                {% endif %}
+            </div>
+            <div id="list_badge">
+                {% if fav.craft.badges.count %}
+                {% for badge in fav.craft.badges.all%}
+                <img src={{badge.image}}>
+                {% endfor %}
+                {% else %}
+                <div>No Badges</div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-</a>
+</div>
+
 {% endfor %}
 
 {% endblock %}
