@@ -1,36 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>DETAIL <span class="teal-text">{{object.name}}</span></h1>
-    <div class="card">
-        <div class="card-content">
-            <img src={{craft.color}}>
-            <p>MANUFACTURER: {{ craft.manufacturer }}</p>
-            <p>MODEL: {{ craft.model }}</p>
-            <p>PRICE: {{ craft.sell_price }}</p>
-            <p>MILEAGE: {{ craft.mileage }}</p>
-            {% for photo in craft.photo_set.all %}
-                <img class="responsive-img card-panel" src="{{photo.url}}">
-            {% empty %}
-                <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-            {% endfor %}
+<div id="detail_container">
+    <div class="carousel">
+        {% for photo in craft.photo_set.all %}
+                <a  class="carousel-item">
+                    <img  src="{{photo.url}}">
+                </a>
+        {% empty %}
+                <div>No Photos Uploaded</div>
+        {% endfor %}
+    </div>
+    <div>
+        <div>Model: {{ craft.model}}</div>
+        <div> Manufacturer: {{ craft.manufacturer}}</div>
+        <div> Price: {{ craft.price}}</div>
+        <div> Mileage: {{ craft.mileage}}</div>
+        <div>  Consumables: {{ craft.consumables }}</div>
+        <div> Cost in Credits: {{ craft.cost_in_credits}}</div>
+        <div> Crew: {{ craft.crew}}</div>
+        <div> Length: {{craft.length}}</div>
+        <div> Max atmosphering speed: {{ craft.max_atmosphering_speed}}</div>
+        <div> Name: {{craft.name}}</div>
+        <div> Passengers: {{ craft.passengers}}</div>
+        <div> Hyperdrive Rating: {{craft.hyperdrive_rating}}</div>
+        <div> url: {{craft.url }}</div>
+        <div> Vehicle class: {{ craft.vehicle_class}}</div>
+        <div> Starship Class: {{craft.starship_class}}</div>
+        <div> MGLT: {{ craft.mglt}}</div>
+        <div> Sell Price: {{ craft.sell_price}}</div>
+        <div> Condition: {{ craft.condtion}}</div>
+        <div> Description: {{ craft.description}}</div>
+        <div> Date Created: {{ craft.date_created}}</div>
+        <div id="detail_badge">
             {% if craft.badges.count %}
                 {% for badge in craft.badges.all %}
+                <div>
                     <img src="{{badge.image}}">
                     <p>NAME: {{ badge.name }}</p>
                     <p>description: {{ badge.description }}</p>
+                </div>
                 {% endfor %}
             {% else %}
                 <p>No Badges</p>
             {% endif %}
+        </div>
+        
+        <div id="list_fav">
             {% if user.is_authenticated %}
-                {% if craft.id in favs %}
-                    <a href="{% url 'favorite_create' craft.id %}">Unfavorite Craft</a>
-                {% else %}
-                    <a href="{% url 'favorite_create' craft.id %}"> Favorite Craft</a>
+                {% if craft.user.id != user.id %}
+                    {% if craft.id in favs %}
+                        <a class="fav_button" style="background-color: green" href="{% url 'favorite_create' craft.id %}"></a>
+                    {% else %}
+                        <a class="fav_button" href="{% url 'favorite_create' craft.id %}"></a>
+                    {% endif %}
                 {% endif %}
             {% endif %}
         </div>
     </div>
-<a href="javascript:history.back()">Go Back</a>
-<!-- SEND BACK TO PAGE THAT ACCESSED FROM -->
+    
+</div>
+  <a href="javascript:history.back()">Go Back</a>
+
+<script >
+    document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, {
+        numVisible : 4,
+    });
+});
+</script>
 {% endblock %}
