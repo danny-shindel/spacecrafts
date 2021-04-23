@@ -9,17 +9,18 @@ BY: The Starboyz (Daniel Shindel, Elliot Hwang, Dave Curry, Luis Hernandez)
 
 
 ## Screenshots
-<img  src="" width="80%">
+<img  src="https://i.imgur.com/39YPlVx.png" width="80%">
 
-> j
+> Here is a list view of select spacecrafts. General info is displayed on each spacecraft.
 
-<img  src="" width="80%">
+<img  src="https://i.imgur.com/fokJwBc.png" width="80%">
 
-> C
+> A user can select a spacecraft through a carousel full of spacecrafts.
 
-<img  src="" width="80%">
+<img  src="https://i.imgur.com/JCvFiNR.png" width="80%">
 
-> W
+> Here is a view of  information that can be entered for a spacecraft.
+
 
 
 
