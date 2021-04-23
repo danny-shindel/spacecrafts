@@ -11,23 +11,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
   <header tabindex="-1" class="navbar-fixed">
     <nav tabindex="-1">
       <div tabindex="-1" class="nav-wrapper">
         <ul tabindex="-1">
-          <li tabindex="-1"><a href="/" class="left brand-logo">&nbsp;&nbsp;SpaceCrafts</a></li>
+          <li tabindex="-1"><a href="/" class="left brand-logo">&nbsp;&nbsp;SPACECRAFTS</a></li>
         </ul>
         <ul tabindex="-1" class="right">
           {% if user.is_authenticated %}
-            <li tabindex="-1"><a href="/crafts/" >&nbsp;&nbsp;My.Crafts</a></li>
-            <li tabindex="-1"><a href="/favorite/" >&nbsp;&nbsp;My.Favs</a></li>
-            <li tabindex="-1"><a href="{% url 'logout' %}">&nbsp;&nbsp;Log Out</a></li>
+            <li tabindex="-1"><a href="/crafts/" >&nbsp;&nbsp;POSTS</a></li>
+            <li tabindex="-1"><a href="/favorite/" >&nbsp;&nbsp;FAVORITES</a></li>
+            <li tabindex="-1"><a href="{% url 'logout' %}">&nbsp;&nbsp;LOG OUT</a></li>
           {% else %}
-            <li tabindex="-1"><a href="{% url 'signup' %}">Sign Up</a></li>
-            <li tabindex="-1"><a href="{% url 'login' %}">Log In</a></li>
+            <li tabindex="-1"><a href="{% url 'signup' %}">SIGN UP</a></li>
+            <li tabindex="-1"><a href="{% url 'login' %}">LOG IN</a></li>
           {% endif %}
         </ul>
       </div>
@@ -38,7 +39,7 @@
     {% endblock %}
   </main>
   <footer tabindex="-1" class="page-footer">
-    <div tabindex="-1" class="right">All Rights Reserved, &copy; 2021 SpaceCrafts &nbsp;</div>
+    <div tabindex="-1">All Rights Reserved, &copy; 2021 SpaceCrafts &nbsp;</div>
   </footer>
 </body>
 </html>

@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 tabindex="-1">Log In</h1>
-
-<form tabindex="-1" method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input tabindex="1" type="submit" class="btn" value="login">
-  <input tabindex="-1"type="hidden" name="next" value="{{ next }}">
-</form>
+<div id="login_container">
+  <h1 tabindex="-1">Log In</h1>
+  <form tabindex="-1" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input tabindex="1" type="submit" class="btn" value="login">
+    <input tabindex="-1" type="hidden" name="next" value="{{ next }}">
+  </form>
+</div>
 
 {% endblock %}
