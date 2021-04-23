@@ -4,7 +4,7 @@
 
 <div tabindex="-1" class="carousel" id="search_carousel">
     {% for starship in starships %}
-    <a tabindex="-1" class="carousel-item">
+    <a tabindex="1" class="carousel-item">
         <div tabindex="-1" id='search_img'><img tabindex="-1" alt="Craft image." id="search_image" src={{starship.color}}></div>
         <div tabindex="-1">{{starship.name}}</div>&nbsp;
         <form tabindex="-1" method='POST' action="/form/">

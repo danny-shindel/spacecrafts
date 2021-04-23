@@ -50,7 +50,7 @@
             {% if user.is_authenticated %}
                 {% if craft.user.id != user.id %}
                     {% if craft.id in favs %}
-                        <a class="fav_button" style="background-color: green" href="{% url 'favorite_create' craft.id %}"></a>
+                        <a class="fav_button" style="background-color:  #94849B" href="{% url 'favorite_create' craft.id %}"></a>
                     {% else %}
                         <a class="fav_button" href="{% url 'favorite_create' craft.id %}"></a>
                     {% endif %}
